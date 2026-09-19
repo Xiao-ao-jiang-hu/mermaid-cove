@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Plugin integration</title>
+<h1>Existing Mermaid integration</h1><p id="status">Running</p>
+<div class="mermaid">flowchart LR
+A[Existing Mermaid] -->|Install plugin| B[New renderer]</div>
+<script type="module">
+import mermaid from 'mermaid';
+import { install } from '../dist/plugin.js';
+try {
+  install(mermaid, {darkMode: false});
+  await mermaid.run();
+  const svg = document.querySelector('.mermaid svg');
+  if (!svg || svg.querySelectorAll('g.node').length !== 2) throw new Error('Missing graph');
+  document.querySelector('#status').textContent = 'PASS: existing Mermaid instance uses the plugin';
+} catch (error) { document.querySelector('#status').textContent = `FAIL: ${error.message}`; }
+</script></html>

@@ -1,0 +1,10 @@
+import renderer, { type RendererOptions } from '../dist/index.js';
+import mermaid from 'mermaid';
+import install from '../dist/plugin.js';
+const options: RendererOptions = { darkMode: false, decisionStyle: 'diamond', colors: { line: '#123456' } };
+renderer.initialize(options);
+const result = await renderer.render('typed-example', 'flowchart LR\nA --> B');
+result.bindFunctions?.(document.createElement('div'));
+await renderer.run({ nodes: document.querySelectorAll<HTMLElement>('.mermaid') });
+await renderer.parse('flowchart LR\nA --> B');
+install(mermaid, options);
