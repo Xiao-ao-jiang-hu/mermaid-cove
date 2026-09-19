@@ -78,3 +78,18 @@ npm run dev
 ## 开源说明
 
 项目源码采用 MIT 许可证，依赖保留各自许可证，完整声明见 `THIRD_PARTY_NOTICES.md`。实现参考了本机 Codex App 的行为和尺寸，使用公开的 Mermaid/ELK 包，不分发 App 安装包、私有资源或运行时。更多配置见 [English README](./README.md)。
+
+## 发布到 npm（维护者）
+
+首次发布前，在本机登录 npm：
+
+```sh
+npm login --registry=https://registry.npmjs.org/
+npm whoami --registry=https://registry.npmjs.org/
+npm publish --dry-run
+npm publish
+```
+
+`publishConfig` 已固定为 npm 官方仓库和公开访问。`npm publish` 会先自动执行语法检查、构建和 TypeScript 类型检查。按 npm 提示在浏览器中完成身份验证；不要把密码、Token 或一次性验证码写入源码。
+
+首次目标版本为 `0.1.0`。发布后可运行 `npm view mermaid-cove@0.1.0 version` 验证；后续发布需要先更新版本号，已发布的同一版本不能覆盖。

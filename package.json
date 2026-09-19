@@ -8,7 +8,8 @@
     "build": "node scripts/notices.mjs && node scripts/build.mjs",
     "build:demo": "vite build --outDir demo-dist",
     "check": "node --check src/index.js && node --check src/layout.js && node --check src/theme.js && node --check src/plugin.js",
-    "check:types": "tsc --noEmit --strict --skipLibCheck --module nodenext --target es2022 --lib es2022,dom tests/types.ts"
+    "check:types": "tsc --noEmit --strict --skipLibCheck --module nodenext --target es2022 --lib es2022,dom tests/types.ts",
+    "prepublishOnly": "npm run check && npm run build && npm run check:types"
   },
   "keywords": [
     "mermaid",
@@ -24,7 +25,6 @@
     "@mermaid-js/layout-elk": "0.1.9",
     "mermaid": "11.17.0"
   },
-  "private": true,
   "devDependencies": {
     "typescript": "5.9.3",
     "vite": "7.3.6"
@@ -56,5 +56,9 @@
   "homepage": "https://github.com/Xiao-ao-jiang-hu/mermaid-cove#readme",
   "bugs": {
     "url": "https://github.com/Xiao-ao-jiang-hu/mermaid-cove/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
